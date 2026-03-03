@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const store = useCatchStore()
 
-const imageLoad = ref(false)
+const imageLoad = ref(true)
 
 watch(() => store.currentPokemon,
     async (newVal, oldVal) => {
@@ -32,7 +32,6 @@ watch(() => store.currentPokemon,
             rel="Pokemon Dex number"
             class="text-4xl self-center">
             # {{ pokemon.id }}</h1>
-
         <img
             rel="Pokemon Sprite"
             :title="`${pokemon.name} Sprite`"

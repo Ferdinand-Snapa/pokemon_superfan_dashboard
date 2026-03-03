@@ -1,8 +1,18 @@
 <script setup  lang="ts">
     import PokemonContainer from '@/components/pokemonContainer.vue';
-import { useCatchStore } from '@/stores/catchPokemon';
-    
+    import { useCatchStore } from '@/stores/catchPokemon';
+    import { useFavoriteStore } from '@/stores/favoritePokemon';
+
     const catchStore = useCatchStore()
+    const favoriteStore = useFavoriteStore()
+
+    function handleOnCatch() {
+        if (catchStore.currentPokemon) {
+            favoriteStore.addFavorite(catchStore.currentPokemon)
+            catchStore.moveToNextPokemon()
+        }
+        
+    }
 </script>
 
 <template>
@@ -15,6 +25,7 @@ import { useCatchStore } from '@/stores/catchPokemon';
     <div v-else-if="catchStore.currentPokemon">
         <PokemonContainer :pokemon="catchStore.currentPokemon"/>
         <button
+            @click="handleOnCatch"
             rel="Catch pokemon Button"
             :title="`Catch ${ catchStore.currentPokemon.name }`"
             class="outline-5 outline-yellow-500 p-2 rounded-2xl text-2xl hover:text-primary">

@@ -44,7 +44,7 @@ function parsePokemon(data: PokeApiResponse): Pokemon {
     }
 }
 
-async function fetchPokemon(dexNumber: number): Promise<Pokemon | Error> {
+export async function fetchPokemon(dexNumber: number): Promise<Pokemon | Error> {
     const url: string = pokemonEndpoint + dexNumber
     console.log(url)
     const repsonse = await fetch(url, pokeApiParams)

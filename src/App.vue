@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { useCatchStore } from './stores/catchPokemon';
+import { useFavoriteStore } from './stores/favoritePokemon';
 import { onMounted } from 'vue';
 
 const cachStore = useCatchStore()
+const favoriteStore = useFavoriteStore()
 
 onMounted(() => {
   cachStore.init()
+  favoriteStore.init()
 })
 
 function handleCatchNewPokemon() {
