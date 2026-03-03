@@ -1,6 +1,14 @@
 @import './base.css';
 @import "tailwindcss";
 
+@theme {
+  --color-highlight: #008000;
+  --color-primary: #008080;
+  --color-secondary: #004080;
+  --color-dark: #000000;
+  --color-light: #c0c0c0
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
