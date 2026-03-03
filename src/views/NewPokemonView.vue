@@ -22,7 +22,8 @@
     <div
         v-else-if="catchStore.error"> {{ catchStore.error }} 
     </div>
-    <div v-else-if="catchStore.currentPokemon">
+    <div v-else-if="catchStore.currentPokemon"
+        class="w-max">
         <PokemonContainer :pokemon="catchStore.currentPokemon"/>
         <button
             @click="handleOnCatch"

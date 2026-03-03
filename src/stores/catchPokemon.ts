@@ -9,7 +9,9 @@ export interface Pokemon {
     id: number,     //dex number
     name: string,   
     sprite: string, //sprite path
-    types: string[]
+    types: string[],
+    colorL: string,
+    colorR: string
 }
 
 //the data I want to store from the pokemonEndpoint
@@ -34,13 +36,42 @@ const pokeApiParams = {
     }
 }
 
+const pokemonTypeColors: Record<string, string> = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD"
+}
+
 //casts the poke api repsonse into cleaner class called Pokemon
 function parsePokemon(data: PokeApiResponse): Pokemon {
+    const types: string[] = data.types.map(t => {return t.type.name})
+    let righColor: string
+    let leftColor: string
+    leftColor = pokemonTypeColors[types[0]]
+    righColor = pokemonTypeColors[types[1] ? types[1] : types[0]]
+
     return {
         id: data.id,
         name: data.name,
         sprite: data.sprites.front_default,
-        types: data.types.map(t => {return t.type.name})
+        types: types,
+        colorL: leftColor,
+        colorR: righColor
     }
 }
 

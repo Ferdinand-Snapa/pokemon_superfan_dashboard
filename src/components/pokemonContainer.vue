@@ -26,7 +26,8 @@ watch(() => store.currentPokemon,
 </script>
 
 <template>
-    <div class="flex items-stretch ">
+    <div class="flex items-stretch"
+        :style="`background: linear-gradient(to right, ${pokemon.colorL}88, ${pokemon.colorR}88)`">
         <!--Dex number-->
         <h1
             rel="Pokemon Dex number"
@@ -48,5 +49,4 @@ watch(() => store.currentPokemon,
             </div>
         </div>
     </div>
-
 </template>
