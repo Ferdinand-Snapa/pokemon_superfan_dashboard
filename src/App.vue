@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { useCatchStore } from './stores/catchPokemon';
+import { onMounted } from 'vue';
+
+const cachStore = useCatchStore()
+
+onMounted(() => {
+  cachStore.init()
+})
+
+function handleCatchNewPokemon() {
+  cachStore.moveToNextPokemon()
+}
 </script>
 
 <template>
   <header>
-    <div class="absolute top-0 pt-20">
-      <nav class="flex flex-row gap-5 items-center">
+    <div class="absolute inset-0 h-52 pt-20 w-screen">
+      <nav class="flex flex-row gap-5 self-center">
         <RouterLink
+          @click="handleCatchNewPokemon"
           to="/"
           class="outline-5 outline-lime-500 rounded-2xl text-2xl">
           Catch New Pokemon</RouterLink>
-          
+
         <RouterLink
           to="/collection"
           class="outline-5 outline-yellow-500 rounded-2xl text-2xl">

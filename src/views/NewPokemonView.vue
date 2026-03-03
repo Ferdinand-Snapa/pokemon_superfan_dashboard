@@ -1,12 +1,8 @@
 <script setup  lang="ts">
-    import { useCatchStore } from '@/stores/catchPokemon';
-    import { onMounted } from 'vue';
-
+    import PokemonContainer from '@/components/pokemonContainer.vue';
+import { useCatchStore } from '@/stores/catchPokemon';
+    
     const catchStore = useCatchStore()
-    onMounted(() => {
-        catchStore.init()
-        console.log("just mounted new pokemon page")
-    })
 </script>
 
 <template>
@@ -17,7 +13,8 @@
         v-else-if="catchStore.error"> {{ catchStore.error }} 
     </div>
     <div v-else-if="catchStore.currentPokemon">
-        {{ catchStore.currentPokemon.name }}
+        <PokemonContainer :pokemon="catchStore.currentPokemon"/>
+        <button>Catch {{ catchStore.currentPokemon.name }}</button>
     </div>
     <div v-else>
         yeh somthing up
