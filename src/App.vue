@@ -25,7 +25,7 @@ function handleCatchNewPokemon() {
           @click="handleCatchNewPokemon"
           to="/"
           class="outline-5 outline-lime-500 rounded-2xl text-2xl">
-          Find New Pokemon</RouterLink>
+          Find Another Pokemon</RouterLink>
 
         <RouterLink
           to="/collection"
