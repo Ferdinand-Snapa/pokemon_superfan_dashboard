@@ -105,6 +105,9 @@ export const useCatchStore = defineStore("CatchStore", {
             this.nextPokemon = randomPokemon
         },
         moveToNextPokemon() {
+            if (!this.nextPokemon) {
+                return
+            }
             this.currentPokemon = this.nextPokemon
             if (this.nextPokemon) {
                 this.seenPokemon.push(this.nextPokemon.id)
@@ -122,7 +125,7 @@ export const useCatchStore = defineStore("CatchStore", {
         randomDex: (state) => {
             if (state.seenPokemon.length >= dexLenght) {
                 console.warn('User has seen all pokemon')
-                return -1
+                resetSeenPokemon()
             }
             let randDex: number
             do {
@@ -132,3 +135,10 @@ export const useCatchStore = defineStore("CatchStore", {
         }
     }
 })
+
+function resetSeenPokemon() {
+    console.log("Reseting seen pokemon")
+    const store = useCatchStore()
+    store.seenPokemon = []
+    store.updateLocal()
+}
